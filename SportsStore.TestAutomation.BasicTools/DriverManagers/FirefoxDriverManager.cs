@@ -5,9 +5,9 @@ using System.Text;
 
 namespace SportsStore.TestAutomation
 {
-    class RemoteDriverManager : DriverManager
+    class FirefoxDriverManager : DriverManager
     {
-        public override IWebDriver GetDriver()
+        protected override IWebDriver GetDriver()
         {
             throw new NotImplementedException();
         }
