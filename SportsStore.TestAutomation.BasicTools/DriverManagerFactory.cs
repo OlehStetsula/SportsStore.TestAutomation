@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SportsStore.TestAutomation
+namespace SportsStore.TestAutomation.BasicTools
 {
-    class DriverManagerFactory
+    public class DriverManagerFactory
     {
-        public static DriverManager getManager(DriverType type)
+        public static DriverManager GetDriverManager(DriverType driverType)
         {
             DriverManager driverManager;
-            switch (type)
+            switch (driverType)
             {
                 case DriverType.Chrome:
                     driverManager = new ChromeDriverManager();
@@ -21,19 +21,17 @@ namespace SportsStore.TestAutomation
                     driverManager = new RemoteDriverManager();
                     break;
                 default:
-                    throw new ArgumentException($"This type '{type.ToString()}' of DriverManager is not implemented");
+                    throw new Exception();
             }
+
             return driverManager;
         }
     }
 
     public enum DriverType
-    {        
+    { 
         Chrome,
         Firefox,
-        IE,
-        Edge,
-        Safari,
         Remote
     }
 }
