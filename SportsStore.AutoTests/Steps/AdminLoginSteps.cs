@@ -1,4 +1,5 @@
-﻿using SportsStore.TestAutomation;
+﻿using SportsStore.AutoTests.Pages;
+using SportsStore.TestAutomation;
 using SportsStore.TestAutomation.BasicTools;
 using System;
 using System.Collections.Generic;
@@ -10,38 +11,22 @@ using TechTalk.SpecFlow;
 namespace SportsStore.AutoTests.Steps
 {
     [Binding]
-    public sealed class AdminLoginSteps
+    public sealed class AdminLoginSteps : BaseSteps
     {
-        private SpecFlowContext context;
-        public AdminLoginSteps(ScenarioContext context)
-        {
-            this.context = context;
-        }
+        public AdminLoginSteps(ScenarioContext context) : base(context){ } 
         
         [Given(@"Admin panel of website is opened")]
         public void GivenAdminPanelOfWebsiteIsOpened()
         {
-            string baseUrl = ConfigurationManager.AppSettings.Get("BaseUrl");
-            var driverManager = context.Get<DriverManager>("DriverManager");
-            driverManager.GoToUrl("http://localhost:5000");
+            string baseUrl = configManager.GetValue("BaseUrl");            
+            driverManager.GoToUrl($"{baseUrl}/Admin");
         }
 
-        [When(@"I enter username '(.*)'")]
-        public void WhenIEnterUsername(string p0)
+        [When(@"I enter username '(.*)' and password '(.*)'")]
+        public void WhenIEnterUsername(string userName, string password)
         {
-            
-        }
-
-        [When(@"I enter password '(.*)'")]
-        public void WhenIEnterPassword(string p0)
-        {
-            
-        }
-
-        [Then(@"I am authorized as admin")]
-        public void ThenIAmAuthorizedAsAdmin()
-        {
-            
-        }
+            pageFactory.CreatePage<AdminLoginPage>(driverManager)
+                .Login(userName, password);
+        }        
     }
 }

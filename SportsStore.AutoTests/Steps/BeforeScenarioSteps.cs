@@ -1,8 +1,5 @@
 ﻿using SportsStore.TestAutomation.BasicTools;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using TechTalk.SpecFlow;
 
 namespace SportsStore.AutoTests.Steps
@@ -11,14 +8,16 @@ namespace SportsStore.AutoTests.Steps
     public sealed class BeforeScenarioSteps
     {
         private SpecFlowContext context;
+        ConfigManager configManager;
         public BeforeScenarioSteps(ScenarioContext context)
         {
             this.context = context;
+            configManager = ConfigManager.InitConfigManager();
         }
         [BeforeScenario]
         public void BeforeScenario()
         {
-            DriverType driverType = DriverType.Chrome;
+            var driverType = Enum.Parse<DriverType>(configManager.GetValue("TestBrowser"));
             var driverManager = DriverManagerFactory.GetDriverManager(driverType);
             context.Add("DriverManager", driverManager);
         }
