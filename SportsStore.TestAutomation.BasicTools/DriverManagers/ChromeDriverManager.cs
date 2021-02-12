@@ -13,7 +13,7 @@ namespace SportsStore.TestAutomation
     {
         public ChromeDriverManager()
         {
-            driver = new ChromeDriver(@"C:\Users\Oleh\source\repos\SportsStore.TestAutomation\SportsStore.TestAutomation.BasicTools\bin\Debug\netcoreapp3.1");//Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
+            driver = new ChromeDriver();//Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
             wait = new WebDriverWait(driver, waitTime);
         }
         protected override IWebDriver GetDriver()
