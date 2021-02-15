@@ -13,7 +13,7 @@ namespace SportsStore.TestAutomation
     {
         public ChromeDriverManager()
         {
-            driver = new ChromeDriver();//Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
+            driver = new ChromeDriver(System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location));//Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
             wait = new WebDriverWait(driver, waitTime);
         }
         protected override IWebDriver GetDriver()
