@@ -12,6 +12,8 @@ namespace SportsStore.TestAutomation.BasicTools
         {
             configuration = new ConfigurationBuilder()
                 .AddXmlFile("App.config")
+                .AddEnvironmentVariables()
+                .AddJsonFile("appsettings.json")
                 .AddUserSecrets<ConfigManager>()
                 .Build();
         }

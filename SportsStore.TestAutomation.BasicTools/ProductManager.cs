@@ -38,17 +38,17 @@ namespace SportsStore.TestAutomation.BasicTools
         }
         public Product CreateProductWithoutPrice(string name, string description, string category)
         {
-            builder.AddName(name);
-            builder.AddDescription(description);
-            builder.AddCategory(category);
-            return builder.Build();
+            return builder.AddName(name)
+                .AddDescription(description)
+                .AddCategory(category)
+                .Build();
         }
         public Product CreateProductWithoutCategory(string name, string description, decimal price)
         {
-            builder.AddName(name);
-            builder.AddDescription(description);
-            builder.AddPrice(price);
-            return builder.Build();
+            return builder.AddName(name)
+                    .AddDescription(description)
+                    .AddPrice(price)
+                    .Build();
         }
 
     }

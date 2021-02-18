@@ -6,31 +6,44 @@ namespace SportsStore.TestAutomation.BasicTools
 {
     class ProductBuilder : IBuilder
     {
-        Product product = new Product();
+        private string category;
+        private string description;
+        private string name;
+        private decimal price;
 
-        public void AddCategory(string category)
+        public IBuilder AddCategory(string category)
         {
-            product.Category = category;
+            this.category = category;
+            return this;
         }
 
-        public  void AddDescription(string description)
+        public IBuilder AddDescription(string description)
         {
-            product.Description = description;
+            this.description = description;
+            return this;
         }
 
-        public void AddName(string name)
+        public IBuilder AddName(string name)
         {
-            product.Nane = name;
+            this.name = name;
+            return this;
         }
 
-        public void AddPrice(decimal price)
+        public IBuilder AddPrice(decimal price)
         {
-            product.Price = price;
+            this.price = price;
+            return this;
         }
 
         public Product Build()
         {
-            return product;
+            return new Product()
+            { 
+                Nane = name,
+                Description = description,
+                Price = price,
+                Category = category
+            };
         }
     }
 }

@@ -6,10 +6,10 @@ namespace SportsStore.TestAutomation.BasicTools
 {
     interface IBuilder
     {
-        void AddName(string name);
-        void AddDescription(string description);
-        void AddPrice(decimal price);
-        void AddCategory(string category);
+        IBuilder AddName(string name);
+        IBuilder AddDescription(string description);
+        IBuilder AddPrice(decimal price);
+        IBuilder AddCategory(string category);
         Product Build();
     }
 }
