@@ -14,12 +14,18 @@ namespace SportsStore.AutoTests.Steps
         protected DriverManager driverManager;
         protected PageFactory pageFactory;
         protected ConfigManager configManager;
+        protected VideoRecorder videoRecorder;
+        protected string baseUrl;
+
+
         public BaseSteps(ScenarioContext context)
         {
             this.context = context;
             driverManager = context.Get<DriverManager>("DriverManager");
             pageFactory = new PageFactory();
             configManager = ConfigManager.InitConfigManager();
+            videoRecorder = new VideoRecorder();
+            baseUrl = configManager.GetValue("AppSettings:BaseUrl");
         }
     }
 }

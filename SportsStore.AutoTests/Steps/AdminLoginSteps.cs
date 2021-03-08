@@ -18,7 +18,6 @@ namespace SportsStore.AutoTests.Steps
         [Given(@"Admin panel of website is opened")]
         public void GivenAdminPanelOfWebsiteIsOpened()
         {
-            string baseUrl = configManager.GetValue("BaseUrl");            
             driverManager.GoToUrl($"{baseUrl}/Admin");
         }
 

@@ -20,22 +20,25 @@ namespace SportsStore.AutoTests.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.6.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("AdminLogin")]
-    public partial class AdminLoginFeature
+    [NUnit.Framework.DescriptionAttribute("Smoke")]
+    [NUnit.Framework.CategoryAttribute("smoke")]
+    public partial class SmokeFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-        private string[] _featureTags = ((string[])(null));
+        private string[] _featureTags = new string[] {
+                "smoke"};
         
-#line 1 "AdminLogin.feature"
+#line 1 "Smoke.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "AdminLogin", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "Smoke", "\tSimple calculator for adding two numbers", ProgrammingLanguage.CSharp, new string[] {
+                        "smoke"});
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -74,15 +77,17 @@ namespace SportsStore.AutoTests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("User can login as admin with correct username and password")]
-        [NUnit.Framework.CategoryAttribute("RecordVideoReport")]
-        public virtual void UserCanLoginAsAdminWithCorrectUsernameAndPassword()
+        [NUnit.Framework.DescriptionAttribute("Web page is accessible and no JS errors on this page")]
+        [NUnit.Framework.TestCaseAttribute("Home", null)]
+        [NUnit.Framework.TestCaseAttribute("Cart", null)]
+        [NUnit.Framework.TestCaseAttribute("Admin", null)]
+        public virtual void WebPageIsAccessibleAndNoJSErrorsOnThisPage(string url, string[] exampleTags)
         {
-            string[] tagsOfScenario = new string[] {
-                    "RecordVideoReport"};
+            string[] tagsOfScenario = exampleTags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User can login as admin with correct username and password", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 4
+            argumentsOfScenario.Add("Url", url);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Web page is accessible and no JS errors on this page", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 5
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -102,14 +107,11 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 5
-testRunner.Given("Admin panel of website is opened", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
 #line 6
-testRunner.When("I enter username \'Admin\' and password \'Secret123$\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When(string.Format("I go to Url \'{0}\'", url), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 7
-testRunner.Then("I am authorized as admin", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I see page header on the opened page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

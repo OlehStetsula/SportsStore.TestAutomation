@@ -8,9 +8,17 @@
 
     <OutputType>Library</OutputType>
     <UserSecretsId>f896cdef-5c06-4537-9f95-40fc231b1841</UserSecretsId>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Accord" Version="3.8.0" />
+    <PackageReference Include="Accord.Video" Version="3.8.0" />
+    <PackageReference Include="Accord.Video.FFMPEG" Version="3.8.0" />
+    <PackageReference Include="Accord.Video.VFW" Version="3.8.0" />
+    <PackageReference Include="AForge.Controls.Matrixden" Version="2.2.5.1" />
+    <PackageReference Include="AForge.Video" Version="2.2.5" />
+    <PackageReference Include="Microsoft.Expression.Encoder" Version="4.0.4276.4" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
@@ -29,17 +37,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\SportsStore.TestAutomation.BasicTools\SportsStore.TestAutomation.BasicTools.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="App.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Update="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

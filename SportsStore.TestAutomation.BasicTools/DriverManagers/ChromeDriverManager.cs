@@ -13,18 +13,18 @@ namespace SportsStore.TestAutomation
     {
         public ChromeDriverManager()
         {
-            driver = new ChromeDriver();//System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)
+            driver = InitDriver();
             wait = new WebDriverWait(driver, waitTime);
         }
-        protected override IWebDriver GetDriver()
-        {
-            return driver;
-        }
 
-        public override void QuitDriver()
+        protected IWebDriver InitDriver()
         {
-            if(driver != null)
-                driver.Quit();
+            var options = new ChromeOptions();
+            if(HeadlessMode)
+                options.AddArgument("headless");
+            options.SetLoggingPreference(LogType.Browser, LogLevel.Warning);
+            var driver = new ChromeDriver(options);
+            return driver;
         }
     }
 }

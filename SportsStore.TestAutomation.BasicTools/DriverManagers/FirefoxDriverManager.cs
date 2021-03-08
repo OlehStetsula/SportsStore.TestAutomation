@@ -7,14 +7,6 @@ namespace SportsStore.TestAutomation
 {
     class FirefoxDriverManager : DriverManager
     {
-        protected override IWebDriver GetDriver()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void QuitDriver()
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }
