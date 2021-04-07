@@ -1,4 +1,5 @@
-﻿using SportsStore.AutoTests.Pages;
+﻿using BoDi;
+using SportsStore.AutoTests.Pages;
 using SportsStore.TestAutomation;
 using SportsStore.TestAutomation.BasicTools;
 using System;
@@ -10,21 +11,21 @@ namespace SportsStore.AutoTests.Steps
 {
     public abstract class BaseSteps
     {
-        protected SpecFlowContext context;
+        protected FeatureContext featureContext;
+        protected ScenarioContext scenarioContext;
         protected DriverManager driverManager;
         protected PageFactory pageFactory;
         protected ConfigManager configManager;
-        protected VideoRecorder videoRecorder;
         protected string baseUrl;
 
 
-        public BaseSteps(ScenarioContext context)
+        public BaseSteps(FeatureContext featureContext, ScenarioContext scenarioContext)
         {
-            this.context = context;
-            driverManager = context.Get<DriverManager>("DriverManager");
+            this.featureContext = featureContext;
+            this.scenarioContext = scenarioContext;
+            driverManager = scenarioContext.Get<DriverManager>("DriverManager");
             pageFactory = new PageFactory();
             configManager = ConfigManager.InitConfigManager();
-            videoRecorder = new VideoRecorder();
             baseUrl = configManager.GetValue("AppSettings:BaseUrl");
         }
     }

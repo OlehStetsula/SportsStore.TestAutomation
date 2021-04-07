@@ -2,12 +2,10 @@
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Text;
-using SeleniumExtras.WaitHelpers;
 using SportsStore.TestAutomation.BasicTools;
 using System.Linq;
 using System.IO;
+using ExpectedConditions = OpenQA.Selenium.Support.UI.ExpectedConditions;
 
 namespace SportsStore.TestAutomation
 {
@@ -22,12 +20,11 @@ namespace SportsStore.TestAutomation
         public DriverManager()
         {
             configManager = ConfigManager.InitConfigManager();
+            driver = InitDriver();
+            wait = new WebDriverWait(driver, waitTime);
         }
 
-        protected IWebDriver GetDriver()
-        {
-            return driver;
-        }
+        protected abstract IWebDriver InitDriver();
 
         public void QuitDriver()
         {
@@ -78,7 +75,7 @@ namespace SportsStore.TestAutomation
         {
             try
             {
-                wait.Until(e => e.FindElement(elementLocator).Displayed);
+                wait.Until(ExpectedConditions.ElementIsVisible(elementLocator));
                 return true;
             }
             catch (Exception)
@@ -108,23 +105,17 @@ namespace SportsStore.TestAutomation
         {
             try
             {
-                var artifactDirectory = Path.Combine(Directory.GetCurrentDirectory(), "ScreenshotsAndSources");
+                var artifactDirectory = Path.Combine(Directory.GetCurrentDirectory(), "Screenshots");
                 if (!Directory.Exists(artifactDirectory))
                     Directory.CreateDirectory(artifactDirectory);
 
-                string pageSource = driver.PageSource;
-                string sourceFilePath = Path.Combine(artifactDirectory, Path.GetFileNameWithoutExtension(Path.GetTempFileName() + "_source.html"));
-                File.WriteAllText(sourceFilePath, pageSource, Encoding.UTF8);
-                Console.WriteLine($"Page source: {new Uri(sourceFilePath)}");
-
-                ITakesScreenshot takesScreenshot = driver as ITakesScreenshot;
+               ITakesScreenshot takesScreenshot = driver as ITakesScreenshot;
 
                 if (takesScreenshot != null)
                 {
                     var screenshot = takesScreenshot.GetScreenshot();
                     string screenshotFilePath = Path.Combine(artifactDirectory, Path.GetFileNameWithoutExtension(Path.GetTempFileName() + "_screenshot.png"));
                     screenshot.SaveAsFile(screenshotFilePath, ScreenshotImageFormat.Png);
-                    Console.WriteLine($"Screenshot: {new Uri(screenshotFilePath)}");
                 } 
             }
 

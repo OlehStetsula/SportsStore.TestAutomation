@@ -4,29 +4,28 @@ using System.Collections.Generic;
 using System.Text;
 using TechTalk.SpecFlow;
 using SportsStore.TestAutomation.BasicTools;
+using BoDi;
+using NUnit.Framework;
+using NUnit.Framework.Interfaces;
 
 namespace SportsStore.AutoTests.Steps
 {
     [Binding]
     class AfterScenarioSteps : BaseSteps
     {
-        public AfterScenarioSteps(ScenarioContext context) : base(context){}
+        public AfterScenarioSteps(FeatureContext featureContext, ScenarioContext scenarioContext) : base(featureContext, scenarioContext) {}
 
         [AfterScenario]
         public void AfterScenario()
         {
             if(driverManager != null)
                 driverManager.QuitDriver();
-            VideoRecorder videoRecorder;
-            context.TryGetValue<VideoRecorder>("VideoRecorder", out videoRecorder);
-            if (videoRecorder != null)
-                videoRecorder.EndRecording();
         }
 
         [AfterStep]
-        public void TakeScreenShot()
+        public void TakeScreenShot(FeatureContext featureContext)
         {
-            if (((ScenarioContext)context).TestError != null)
+            if (TestContext.CurrentContext.Result.Outcome == ResultState.Failure)
             {
                 driverManager.TakeScreenshot();
             }

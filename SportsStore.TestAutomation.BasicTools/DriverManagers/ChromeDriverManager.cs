@@ -10,18 +10,14 @@ using System.Text;
 namespace SportsStore.TestAutomation
 {
     class ChromeDriverManager : DriverManager
-    {
-        public ChromeDriverManager()
-        {
-            driver = InitDriver();
-            wait = new WebDriverWait(driver, waitTime);
-        }
-
-        protected IWebDriver InitDriver()
+    {        
+        protected override IWebDriver InitDriver()
         {
             var options = new ChromeOptions();
             if(HeadlessMode)
                 options.AddArgument("headless");
+            options.AddArgument("--start-maximized");
+            options.AddArgument("--disable-notifications");
             options.SetLoggingPreference(LogType.Browser, LogLevel.Warning);
             var driver = new ChromeDriver(options);
             return driver;

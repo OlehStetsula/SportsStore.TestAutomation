@@ -1,4 +1,5 @@
-﻿using SportsStore.AutoTests.Pages;
+﻿using BoDi;
+using SportsStore.AutoTests.Pages;
 using SportsStore.TestAutomation;
 using SportsStore.TestAutomation.BasicTools;
 using System;
@@ -13,7 +14,7 @@ namespace SportsStore.AutoTests.Steps
     [Binding]
     public sealed class AdminLoginSteps : BaseSteps
     {
-        public AdminLoginSteps(ScenarioContext context) : base(context){ } 
+        public AdminLoginSteps(FeatureContext featureContext, ScenarioContext scenarioContext) : base(featureContext, scenarioContext) { } 
         
         [Given(@"Admin panel of website is opened")]
         public void GivenAdminPanelOfWebsiteIsOpened()

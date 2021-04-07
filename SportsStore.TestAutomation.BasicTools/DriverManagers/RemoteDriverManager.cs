@@ -7,6 +7,9 @@ namespace SportsStore.TestAutomation
 {
     class RemoteDriverManager : DriverManager
     {
-        
+        protected override IWebDriver InitDriver()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
